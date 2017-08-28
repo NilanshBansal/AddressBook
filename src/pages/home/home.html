@@ -1,14 +1,45 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar hideBackButton >  <!--done to remove back button from homepage!-->
+    <ion-buttons end>
+      <button ion-button icon-only (click)="onAddNew()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>
-      Ionic Blank
+      Address Book
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+//Load more items scroll everytime 10 items 
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <!-- <ion-list *ngIf="allAddresses.length>0"> -->
+    <ion-card *ngFor="let item of allAddresses" (click)="presentActionSheet(item)">
+        <p id="card_content">
+          Name:{{item?.name}}<br>
+          Email:{{item?.email}}<br>
+          Contact:{{item?.contact}}<br>
+          Calendar:{{item?.calendar}}<br>
+          Date of Birth:{{item?.dateofbirth}}
+        </p>  
+    
+      <button  ion-button icon-only color="danger" (click)="onRemoveAddress(item)">
+        <ion-icon name="ios-trash-outline" ></ion-icon>
+      </button>
+      <button ion-button color="dark" outline medium (click)="onEdit(item)">Edit</button>
+
+      
+
+  </ion-card>
+
+
+
+
+
 </ion-content>
+
+
+
+
+ 

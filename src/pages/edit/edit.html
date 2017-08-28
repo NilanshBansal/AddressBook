@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="goToHome()">
+                <ion-icon name="home"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>
+            Edit Contact
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <form (ngSubmit)="onEditSave(nameLabel,emailLabel,contactLabel,calendarLabel,dateofbirthLabel)" #f="ngForm">
+        <ion-item>
+            <ion-label floating>*Name:</ion-label>
+            <ion-input type="text" name="name" value="{{editedItem.name}}" required #nameLabel></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>*Email:</ion-label>
+            <ion-input type="email" name="email" value="{{editedItem.email}}" (focusout)="emailvalidation(emailLabel.value)" required #emailLabel></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Contact:</ion-label>
+            <ion-input type="number" name="contact" min=1 value="{{editedItem.contact}}" #contactLabel></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>*Calendar:</ion-label>
+            <ion-input type="" name="calendar" onfocus="(this.type='date')" onfocusout="(this.type='text')" value="{{editedItem.calendar}}" required #calendarLabel></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>*D.O.B:</ion-label>
+            <ion-input type="" name="dateofbirth" onfocus="(this.type='date')" onfocusout="(this.type='text')" value="{{editedItem.dateofbirth}}" required #dateofbirthLabel></ion-input>
+        </ion-item>
+        <button ion-button type="submit" [disabled]="!f.valid">Save</button>
+        <button ion-button type="button" (click)="cancelEdit()">Cancel</button>
+    </form>
+</ion-content>

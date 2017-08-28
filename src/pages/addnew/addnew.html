@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-navbar>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="goToHome()">
+                <ion-icon name="home"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>
+            Add New Contact
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <form (ngSubmit)="onAddingNewAddress(f.value)" #f="ngForm">
+        <ion-item>
+            <ion-label floating>*Name:</ion-label>
+            <ion-input type="text" name="name" required [(ngModel)]="newAddress.name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>*Email:</ion-label>
+            <ion-input type="email" name="email" (focusout)="emailvalidation(emailLabel.value)" #emailLabel required [(ngModel)]="newAddress.email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Contact:</ion-label>
+            <ion-input type="number" name="contact" min=1 [(ngModel)]="newAddress.contact"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>*Calendar:</ion-label>
+            <ion-input type="" name="calendar" onfocus="(this.type='date')" onfocusout="(this.type='text')" required [(ngModel)]="newAddress.calendar"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>*D.O.B:</ion-label>
+            <ion-input type="" name="dateofbirth" onfocus="(this.type='date')" onfocusout="(this.type='text')" required [(ngModel)]="newAddress.dateofbirth"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>I accept</ion-label>
+            <ion-checkbox color="dark" (ionChange)="checkStatus($event)" checked="false" required ></ion-checkbox>
+        </ion-item>
+        <button ion-button type="submit" block [disabled]="!f.valid || !isChecked">Submit</button>
+    </form>
+</ion-content>
